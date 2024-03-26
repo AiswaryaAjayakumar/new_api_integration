@@ -18,20 +18,22 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   void initState() {
     WidgetsBinding.instance.addPersistentFrameCallback((timeStamp) {
-      Provider.of<BusinessController>(context).getData();
+      Provider.of<BusinessController>(context, listen: false).getData();
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    var providerObj = Provider.of<BusinessController>(context, listen: false);
+    var providerObj = Provider.of<BusinessController>(context);
     return Scaffold(
       body: ListView.separated(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) => CategoryCustomApi(
-                imageUrl: providerObj.articles[index].urlToImage ?? "",
+                imageUrl: providerObj.articles[index].urlToImage != null
+                    ? providerObj.articles[index].urlToImage ?? ""
+                    : "null",
                 author: providerObj.articles[index].author != null
                     ? providerObj.articles[index].author ?? ""
                     : "null",
