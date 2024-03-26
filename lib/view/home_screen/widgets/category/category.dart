@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:new_api_integration/view/home_screen/widgets/category/widgets/category_details.dart';
-
+import 'package:new_api_integration/view/home_screen/widgets/category/widgets/business_details.dart';
+import 'package:new_api_integration/view/home_screen/widgets/category/widgets/sports_details.dart';
 
 class Category extends StatefulWidget {
   const Category({super.key});
@@ -24,11 +24,19 @@ class _CategoryState extends State<Category> {
           //  physics: NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) => InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CategoryDetails(),
-                      ));
+                  if (index == 0) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BusinessDetails(),
+                        ));
+                  } else if (index == 1) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SportsDetails(),
+                        ));
+                  }
                 },
                 child: Container(
                   height: 20,

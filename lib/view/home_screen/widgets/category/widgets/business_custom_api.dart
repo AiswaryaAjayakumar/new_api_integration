@@ -9,8 +9,8 @@ import 'package:new_api_integration/controller/business_screen_controller.dart';
 import 'package:new_api_integration/view/home_screen/widgets/news_details.dart';
 import 'package:provider/provider.dart';
 
-class CategoryCustomApi extends StatelessWidget {
-  CategoryCustomApi({
+class BusinessCustomApi extends StatelessWidget {
+  BusinessCustomApi({
     super.key,
     required this.imageUrl,
     required this.author,
@@ -18,7 +18,6 @@ class CategoryCustomApi extends StatelessWidget {
     required this.des,
     required this.dateTime,
     required this.content,
-
   });
   String imageUrl;
   String author;
@@ -27,12 +26,11 @@ class CategoryCustomApi extends StatelessWidget {
   String dateTime;
   String content;
 
-
   @override
   Widget build(BuildContext context) {
-    var providerObj = Provider.of<BusinessController>(context);
+    //var providerObj = Provider.of<BusinessController>(context);
 
-    int index = 0;
+    //int index = 0;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
       width: MediaQuery.sizeOf(context).height,
@@ -40,22 +38,22 @@ class CategoryCustomApi extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => NewsDetails(
-                      date: (providerObj.articles[index].publishedAt) != null
-                          ? DateFormat("dd MM yyy")
-                              .format(providerObj.articles[index].publishedAt!)
-                          : "Null",
-                      title: providerObj.articles[index].title ?? "",
-                      imgUrl: providerObj.articles[index].urlToImage ?? "",
-                      author: providerObj.articles[index].author != null
-                          ? providerObj.articles[index].author ?? ""
-                          : "null",
-                      des: providerObj.articles[index].description ?? "",
-                    ),
-                  ));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (context) => NewsDetails(
+              //         date: (providerObj.articles[index].publishedAt) != null
+              //             ? DateFormat("dd MM yyy")
+              //                 .format(providerObj.articles[index].publishedAt!)
+              //             : "Null",
+              //         title: providerObj.articles[index].title ?? "",
+              //         imgUrl: providerObj.articles[index].urlToImage ?? "",
+              //         author: providerObj.articles[index].author != null
+              //             ? providerObj.articles[index].author ?? ""
+              //             : "null",
+              //         des: providerObj.articles[index].description ?? "",
+              //       ),
+              //     ));
             },
             child: CachedNetworkImage(
               height: 150,
@@ -93,7 +91,7 @@ class CategoryCustomApi extends StatelessWidget {
                   maxLines: 8,
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -107,6 +105,9 @@ class CategoryCustomApi extends StatelessWidget {
                       style: TextStyle(color: Colors.grey),
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 Text(content)
               ],

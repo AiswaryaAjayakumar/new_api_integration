@@ -3,18 +3,18 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:new_api_integration/controller/business_screen_controller.dart';
-import 'package:new_api_integration/view/home_screen/widgets/category/widgets/category_custom_api.dart';
+import 'package:new_api_integration/view/home_screen/widgets/category/widgets/business_custom_api.dart';
 //import 'package:new_api_integration/view/home_screen/widgets/cutom_api_card.dart';
 import 'package:provider/provider.dart';
 
-class CategoryDetails extends StatefulWidget {
-  const CategoryDetails({super.key});
+class BusinessDetails extends StatefulWidget {
+  const BusinessDetails({super.key});
 
   @override
-  State<CategoryDetails> createState() => _CategoryDetailsState();
+  State<BusinessDetails> createState() => _BusinessDetailsState();
 }
 
-class _CategoryDetailsState extends State<CategoryDetails> {
+class _BusinessDetailsState extends State<BusinessDetails> {
   @override
   void initState() {
     WidgetsBinding.instance.addPersistentFrameCallback((timeStamp) {
@@ -29,8 +29,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
     return Scaffold(
       body: ListView.separated(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) => CategoryCustomApi(
+          //physics: NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) => BusinessCustomApi(
                 imageUrl: providerObj.articles[index].urlToImage != null
                     ? providerObj.articles[index].urlToImage ?? ""
                     : "null",

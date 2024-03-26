@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:new_api_integration/controller/business_screen_controller.dart';
 import 'package:new_api_integration/controller/home_screen_controller.dart';
+import 'package:new_api_integration/controller/sports_controller.dart';
 import 'package:new_api_integration/view/home_screen/home_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => BusinessController(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SportsController(),
         )
       ],
       child: MaterialApp(
