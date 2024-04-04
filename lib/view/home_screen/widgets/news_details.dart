@@ -2,22 +2,20 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:new_api_integration/controller/home_screen_controller.dart';
+import 'package:new_api_integration/model/home_screen_model/api_res_model.dart';
+import 'package:new_api_integration/view/home_screen/widgets/cutom_api_card.dart';
+import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NewsDetails extends StatefulWidget {
   NewsDetails({
     super.key,
-    required this.date,
-    required this.title,
-    required this.imgUrl,
-    required this.author,
-    required this.des,
+    required this.articleDetails,
   });
 
-  String date;
-  String title;
-  String imgUrl;
-  String author;
-  String des;
+  final Article articleDetails;
 
   @override
   State<NewsDetails> createState() => _NewsDetailsState();
@@ -26,6 +24,7 @@ class NewsDetails extends StatefulWidget {
 class _NewsDetailsState extends State<NewsDetails> {
   @override
   Widget build(BuildContext context) {
+    final providerObj = Provider.of<HomeScreenController>(context);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -33,12 +32,17 @@ class _NewsDetailsState extends State<NewsDetails> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(widget.date),
+              Row(
+                children: [
+                  Icon(Icons.arrow_back),
+                ],
+              ),
+              Text(widget.articleDetails.publishedAt.toString()),
               SizedBox(
                 height: 10,
               ),
               Text(
-                widget.title,
+                widget.articleDetails.title.toString(),
                 maxLines: 8,
               ),
               SizedBox(
@@ -49,21 +53,28 @@ class _NewsDetailsState extends State<NewsDetails> {
                   // height: 200,
                   // width: 300,
                   fit: BoxFit.cover,
-                  imageUrl: widget.imgUrl,
+                  imageUrl: widget.articleDetails.urlToImage.toString(),
                   placeholder: (context, url) =>
                       Center(child: CircularProgressIndicator()),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
-                
               ),
               SizedBox(
                 height: 20,
               ),
-              Text(widget.author),
+              Text(widget.articleDetails.author.toString()),
               SizedBox(
                 height: 20,
               ),
-              Text(widget.des)
+              Text(widget.articleDetails.description.toString()),
+              Center(
+                  child: TextButton(
+                      onPressed: () async {
+                        final url =
+                            Uri.parse(widget.articleDetails.url.toString());
+                        await launchUrl(url);
+                      },
+                      child: Text("Read more...")))
             ],
           ),
         ),

@@ -1,4 +1,4 @@
-package com.example.new_api_integration
+package com.luminartechnolab.newsapiprjct
 
 import io.flutter.embedding.android.FlutterActivity
 
